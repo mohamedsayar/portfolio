@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Sayar S — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12151A;
+  --surface:#1B1F27;
+  --surface-2:#20242E;
+  --text:#E6E8EB;
+  --muted:#8B93A1;
+  --amber:#F2A93B;
+  --green:#59D499;
+  --red:#F26D6D;
+  --border:#2A2F3A;
+  --mono:'JetBrains Mono', monospace;
+  --sans:'Inter', sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:inherit;text-decoration:none;}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(18,21,26,0.85);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1000px;margin:0 auto;padding:18px 24px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.logo{font-family:var(--mono);font-weight:700;letter-spacing:0.5px;color:var(--amber);}
+.cursor-blink{animation:blink 1s step-end infinite;}
+.nav-links{list-style:none;display:flex;gap:28px;font-family:var(--mono);font-size:0.85rem;}
+.nav-links a{color:var(--muted);transition:color .2s;}
+.nav-links a:hover{color:var(--amber);}
+
+/* HERO / TERMINAL */
+.hero{
+  padding:80px 24px 60px;
+  display:flex;justify-content:center;
+}
+.terminal{
+  width:100%;max-width:720px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.45);
+}
+.terminal-bar{
+  background:var(--surface-2);
+  padding:10px 16px;
+  display:flex;align-items:center;gap:14px;
+  border-bottom:1px solid var(--border);
+}
+.dots{display:flex;gap:7px;}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block;}
+.dot.red{background:var(--red);}
+.dot.yellow{background:var(--amber);}
+.dot.green{background:var(--green);}
+.terminal-title{font-family:var(--mono);font-size:0.78rem;color:var(--muted);}
+.terminal-body{padding:26px 22px;font-family:var(--mono);font-size:0.95rem;}
+.line{color:var(--muted);margin-top:14px;opacity:0;animation:reveal .4s forwards;}
+.line:first-child{margin-top:0;}
+.output{color:var(--text);margin-top:6px;padding-left:20px;opacity:0;animation:reveal .4s forwards;}
+.prompt{color:var(--amber);margin-right:8px;}
+.accent-green{color:var(--green);}
+.delay-1{animation-delay:1.2s;}
+.delay-2{animation-delay:2.4s;}
+.delay-3{animation-delay:3.6s;}
+.blink-cursor{color:var(--amber);animation:blink 1s step-end infinite;}
+#typed-name{color:var(--text);margin-top:6px;padding-left:20px;font-weight:700;font-size:1.1rem;border-right:2px solid var(--amber);white-space:nowrap;overflow:hidden;width:0;animation:typing 1.4s steps(20,end) 0.3s forwards;}
+
+@keyframes reveal{to{opacity:1;}}
+@keyframes blink{50%{opacity:0;}}
+@keyframes typing{to{width:20ch;}}
+
+/* SECTIONS */
+.section{padding:80px 24px;}
+.section.alt{background:var(--surface);}
+.section-inner{max-width:800px;margin:0 auto;}
+.eyebrow{font-family:var(--mono);color:var(--amber);font-size:0.8rem;margin-bottom:14px;}
+.section-title{font-family:var(--mono);font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;margin-bottom:22px;line-height:1.35;}
+.body-text{color:var(--muted);font-size:1.02rem;max-width:640px;}
+
+/* DIFF BLOCK */
+.diff-block{
+  background:var(--ink);
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  font-family:var(--mono);
+  font-size:0.92rem;
+}
+.diff-line{padding:11px 18px;border-bottom:1px solid var(--border);}
+.diff-line:last-child{border-bottom:none;}
+.diff-line.add{background:rgba(89,212,153,0.08);color:var(--green);}
+.diff-line.remove{background:rgba(242,109,109,0.08);color:var(--red);}
+.diff-sym{display:inline-block;width:16px;font-weight:700;}
+
+/* PROJECTS */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:8px;}
+.project-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:22px;
+  transition:transform .2s, border-color .2s;
+}
+.project-card:hover{transform:translateY(-4px);border-color:var(--amber);}
+.project-file{font-family:var(--mono);color:var(--muted);font-size:0.78rem;margin-bottom:10px;}
+.project-card h3{font-size:1.05rem;margin-bottom:10px;}
+.project-card p{color:var(--muted);font-size:0.92rem;margin-bottom:14px;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.tags span{font-family:var(--mono);font-size:0.72rem;background:var(--surface-2);color:var(--amber);padding:4px 9px;border-radius:4px;}
+.project-links{display:flex;gap:16px;font-family:var(--mono);font-size:0.82rem;}
+.project-links a{color:var(--green);}
+.project-links a:hover{text-decoration:underline;}
+.hint{margin-top:24px;color:var(--muted);font-size:0.82rem;font-style:italic;}
+
+/* CONTACT */
+.contact{background:var(--surface);border-top:1px solid var(--border);}
+.contact-grid{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:36px;}
+.contact-link{font-family:var(--mono);font-size:0.95rem;color:var(--text);padding:10px 16px;border:1px solid var(--border);border-radius:6px;transition:border-color .2s, color .2s;}
+.contact-link:hover{border-color:var(--green);color:var(--green);}
+.footer-note{color:var(--muted);font-size:0.8rem;font-family:var(--mono);}
+
+/* ACCESSIBILITY */
+a:focus-visible, button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important;transition:none !important;}
+  .line, .output, #typed-name{opacity:1;width:auto;border-right:none;}
+}
+
+@media (max-width:640px){
+  .nav-links{gap:16px;font-size:0.75rem;}
+  .terminal-body{font-size:0.82rem;}
+  .hero{padding:56px 16px 40px;}
+  .section{padding:56px 16px;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="logo">sayar<span class="cursor-blink">_</span></span>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO: terminal window -->
+<header class="hero">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="terminal-title">sayar@portfolio: ~</span>
+    </div>
+    <div class="terminal-body">
+      <p class="line"><span class="prompt">$</span> whoami</p>
+      <p class="output" id="typed-name"></p>
+      <p class="line delay-1"><span class="prompt">$</span> cat role.txt</p>
+      <p class="output delay-1">Full Stack Developer &mdash; Java · Python · Web</p>
+      <p class="line delay-2"><span class="prompt">$</span> status</p>
+      <p class="output delay-2"><span class="accent-green">●</span> open to opportunities · fresher, ready to build</p>
+      <p class="line delay-3"><span class="prompt">$</span> <span class="blink-cursor">▌</span></p>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <p class="eyebrow">// about</p>
+    <h2 class="section-title">Reads code like it's a sentence. Writes it the same way.</h2>
+    <p class="body-text">
+      I'm Mohamed Sayar S, a fresher full stack developer learning to build complete
+      applications end to end &mdash; from Java and Spring on the backend, to Python
+      for scripting and data work, to clean, responsive interfaces on the frontend.
+      I like understanding how a system fits together, not just how one piece of it works.
+    </p>
+  </div>
+</section>
+
+<!-- SKILLS: diff style -->
+<section class="section alt" id="skills">
+  <div class="section-inner">
+    <p class="eyebrow">// skills.diff</p>
+    <h2 class="section-title">Currently learning &mdash; currently shipping</h2>
+    <div class="diff-block">
+      <div class="diff-line add"><span class="diff-sym">+</span> Java &mdash; core, OOP, Spring Boot basics</div>
+      <div class="diff-line add"><span class="diff-sym">+</span> Python &mdash; scripting, Flask/Django basics</div>
+      <div class="diff-line add"><span class="diff-sym">+</span> Web &mdash; HTML, CSS, JavaScript</div>
+      <div class="diff-line add"><span class="diff-sym">+</span> Databases &mdash; MySQL, basic query design</div>
+      <div class="diff-line add"><span class="diff-sym">+</span> Git &amp; GitHub &mdash; version control workflow</div>
+      <div class="diff-line remove"><span class="diff-sym">-</span> fear of untested code</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-inner">
+    <p class="eyebrow">// projects</p>
+    <h2 class="section-title">Things I'm building</h2>
+    <div class="project-grid">
+
+      <article class="project-card">
+        <p class="project-file">library-management/</p>
+        <h3>Library Management System</h3>
+        <p>Java console app to manage books, members, and issue/return records, using file-based storage.</p>
+        <div class="tags"><span>Java</span><span>File I/O</span><span>OOP</span></div>
+        <div class="project-links">
+          <a href="https://github.com/mohamedsayar/library-management" target="_blank" rel="noopener">code →</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <p class="project-file">job-portal/</p>
+        <h3>Job Portal</h3>
+        <p>Browse and post job listings with search and filters by role type and location.</p>
+        <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        <div class="project-links">
+          <a href="https://github.com/mohamedsayar/job-portal" target="_blank" rel="noopener">code →</a>
+          <a href="https://mohamedsayar.github.io/job-portal/" target="_blank" rel="noopener">demo →</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <p class="project-file">ecommerce-mini/</p>
+        <h3>E-commerce Mini Site</h3>
+        <p>Product catalog storefront with category filters and a working cart, built with vanilla JS.</p>
+        <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        <div class="project-links">
+          <a href="https://github.com/mohamedsayar/ecommerce-mini" target="_blank" rel="noopener">code →</a>
+          <a href="https://mohamedsayar.github.io/ecommerce-mini/" target="_blank" rel="noopener">demo →</a>
+        </div>
+      </article>
+
+    </div>
+    <p class="hint">Replace the "code" and "demo" links above with your real GitHub repo and live links as you build each one.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<footer class="section contact" id="contact">
+  <div class="section-inner">
+    <p class="eyebrow">// contact</p>
+    <h2 class="section-title">Let's build something.</h2>
+    <div class="contact-grid">
+      <a href="mailto:mohamedsayar03@gmail.com" class="contact-link">
+        <span class="diff-sym add">+</span> email
+      </a>
+      <a href="https://github.com/mohamedsayar" target="_blank" rel="noopener" class="contact-link">
+        <span class="diff-sym add">+</span> github
+      </a>
+      <a href="https://www.linkedin.com/in/mohamed-sayar-28779a329" target="_blank" rel="noopener" class="contact-link">
+        <span class="diff-sym add">+</span> linkedin
+      </a>
+    </div>
+    <p class="footer-note">© <span id="year"></span> Mohamed Sayar S — built line by line.</p>
+  </div>
+</footer>
+
+<script>
+// Fill in the typed name in the terminal hero
+document.getElementById('typed-name').textContent = 'Mohamed Sayar S';
+
+// Auto-update footer year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+</script>
+</body>
+</html>
